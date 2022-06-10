@@ -1,0 +1,128 @@
+# -*- mode: snippet -*-
+# name: My CM Article Template
+# key: cmenart
+# --
+
+% !TEX encoding = UTF-8 Unicode
+
+
+\RequirePackage{fix-cm}
+
+\documentclass[12pt]{article}
+
+\DeclareMathSizes{12}{12}{10}{10}
+
+% \usepackage{libertine}
+% \usepackage{libertinust1math}
+\usepackage{amsmath, amssymb, amsfonts}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\linespread{1.2}
+\usepackage[utf8]{inputenc}
+\usepackage[mathscr]{euscript}
+\usepackage[pagestyles]{titlesec}
+\usepackage{amsthm}
+\usepackage{soul}
+\usepackage[titles]{tocloft}
+\renewcommand{\cftdot}{}        % no points in TOC
+\usepackage{setspace}
+\usepackage{subcaption}
+%\usepackage{babel}
+\usepackage{xcolor}
+% \usepackage{pgfplots}
+\usepackage{marginnote}
+\usepackage[all]{xy}
+\usepackage{multicol}
+\usepackage{csquotes}
+\newcommand\qq{\enquote}
+
+%% MY MACROS
+\newcommand\such{\text{ s.\ t. }}
+
+\usepackage{algorithm}
+\usepackage{algorithmicx}
+\usepackage{algpseudocode}
+\usepackage{verbatim}% http://ctan.org/pkg/verbatim
+% \makeatletter
+% \newcommand{\verbatimfont}[1]{\def\verbatim@font{#1}}%
+% \makeatother
+\usepackage{verbatimbox}
+
+
+\usepackage{sectsty}
+\allsectionsfont{\rmfamily}
+
+\usepackage[Conny]{fncychap}
+\ChNameVar{\Large\rm\centering}
+\ChNumVar{\huge\rm\centering}
+\ChTitleVar{\huge\rm\centering\scshape\bfseries}
+\usepackage{fancyhdr}
+
+\usepackage{enumerate}
+\numberwithin{equation}{chapter}
+\usepackage[margin=2.5cm, marginparwidth=2cm, marginparsep=0.5cm]{geometry}
+
+\usepackage{framed}
+\usepackage{anyfontsize}
+\setcounter{MaxMatrixCols}{20}
+
+\newtheoremstyle{dotlessdr}{}{}{}{}{\bfseries}{:}{ }{}
+\theoremstyle{dotlessdr}
+\newtheorem{remark}{Remark}[section]
+\newtheorem{blank}{***}[section]
+\newtheorem{definition}{Definition}[section]
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{corollary}{Corollary}[section]
+\newtheorem{problem}{Problem}
+
+
+\usepackage[hyphens]{url}
+\usepackage{hyperref}
+\hypersetup{citecolor=blue}
+\usepackage[color]{showkeys}
+\definecolor{labelkey}{RGB}{222,0,0}
+\renewcommand*\showkeyslabelformat[1]
+{\fbox{\parbox[t]{\marginparwidth}{\raggedleft\normalfont\tiny\url{#1}}}}
+
+\usepackage{makeidx}
+\makeindex\setcounter{chapter}{0}\setcounter{page}{1}
+\fancypagestyle{abc}{
+\fancyhf{}
+\fancyhead[L]{\color{gray} \small\scshape\nouppercase\rightmark}
+\fancyhead[R]{\small\color{gray} Adrian Manea}
+\fancyfoot[C]{\thepage{}}
+}
+\pagestyle{abc}
+
+\allowdisplaybreaks
+\DeclareGraphicsExtensions{.png,.pdf}
+\begin{document}
+
+\title{\Huge\scshape\textbf{${1:title}}}
+\author{\Large\scshape Adrian Manea}
+
+\date{}
+\maketitle
+% \tableofcontents
+\cleardoublepage
+
+
+$0
+
+
+
+\begin{thebibliography}{999}
+\bibitem[displaykey]{citekey} Author -- Title
+
+
+\end{thebibliography}
+
+\printindex
+
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
