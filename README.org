@@ -1,0 +1,7 @@
+#+TITLE: My Emacs Journey
+#+AUTHOR: Adrian Manea
+
+This is where I document my Emacs learning journey, along with
+tips, tricks, configs etc.
+
+Currently using it on Windows (yes, I know).
