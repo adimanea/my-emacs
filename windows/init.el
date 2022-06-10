@@ -114,6 +114,12 @@
 (setq calendar-location-name "Bucharest, Romania")
 (setq calendar-time-zone 120) ; UTC + 2
 
+;; === FLYMAKE (see also flycheck)
+;; (use-package flymake
+;;   :init
+;;   (define-key flymake-mode-map (kbd "M-n") 'flymake-goto-next-error)
+;;   (define-key flymake-mode-map (kbd "M-p") 'flymake-goto-prev-error))
+
 ;; MELPA
 (use-package undo-tree
   :ensure t
@@ -139,8 +145,26 @@
   )
 
 ;; === MARKDOWN
+;; https://jblevins.org/projects/markdown-mode/
 (use-package markdown-mode
-  :ensure t)
+  :ensure t
+  :config
+  (setq markdown-enable-math t)
+  (setq markdown-fontify-code-blocks-natively t))
+
+;; === F
+;; https://github.com/rejeep/f.el
+;; (use-package f)
+
+;; === LSP-MODE
+;; https://emacs-lsp.github.io/lsp-mode/page/languages/
+;; (use-package lsp-mode
+;;   :after (f)
+;;   :init
+;;   ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
+;;   (setq lsp-keymap-prefix "C-c l")
+;;   :hook (python-mode . lsp-deferred)
+;;   :commands lsp)
 
 ;; === YAML Mode
 (use-package yaml-mode
@@ -292,11 +316,20 @@
 
 ;; === ELPY (Python)
 (use-package elpy
+  :diminish elpy-mode
   :ensure t
   :init
   (elpy-enable)
   (setq python-shell-interpreter "python")
-  (setq python-indent-offset 4))
+  (setq python-indent-offset '4))
+
+;; === PROJECTILE
+;; https://docs.projectile.mx/projectile/installation.html
+(use-package projectile
+  :defer t
+  :init
+  (setq projectile-keymap-prefix (kbd "C-c p")))
+
 
 ;; use fixed width fonts everywhere
 ;; shr = simple HTML renderer, defaults to variable width
@@ -312,10 +345,10 @@
 		(lambda () (if (company-in-string-or-comment) nil 0)))
   (setq company-tooltip-idle-delay
 		(lambda () (if (company-in-string-or-comment) nil 0)))
-  (setq company-minimum-prefix-length 0)
+  (setq company-minimum-prefix-length 3)
   (setq company-tooltip-align-annotations t)
   (setq company-tooltip-flip-when-above t)
-  (setq company-tooltip-margin 3)
+  (setq company-tooltip-margin 1)
   (setq company-format-margin-function #'company-text-icons-margin)
   )
 
@@ -331,6 +364,11 @@
     (lambda ()
       (interactive)
       (company-complete-common-or-cycle -1))))
+
+;; === FLYCHECK
+;; https://www.flycheck.org/en/latest/
+(use-package flycheck
+  :diminish flycheck-mode)
 
 ;; === ELFEED
 ;; more tips and tricks: https://nullprogram.com/blog/2013/11/26/
@@ -453,7 +491,7 @@
 ;; ===RENAME FILE AND BUFFER
 (defun rename-file-and-buffer (new-name)
   "Renames both current buffer and file it's visiting to NEW-NAME."
-  (interactive "sNew name: ")
+  (interactive "New name: ")
   (let ((name (buffer-name))
         (filename (buffer-file-name)))
     (if (not filename)
@@ -487,18 +525,53 @@
   (let ((shell-file-name "C:\\Program Files\\Git\\bin\\bash.exe"))
     (shell "*bash*")))
 
+;; === TREEMACS
+;; many dependencies...
+;; https://github.com/Alexander-Miller/treemacs
+;; (use-package treemacs)
+
+
 ;; === DOOM THEMES
 (use-package doom-themes
-  :defer t)
+  :ensure t
+  :config
+  (setq doom-themes-enable-bold t
+		doom-themes-enable-italic nil)
+  (load-theme 'doom-vibrant t)
+  ;; Enable flashing mode-line on errors
+  ;; (doom-themes-visual-bell-config)
+  ;; improve org mode native fontification
+  (doom-themes-org-config))
+
+(use-package doom-modeline
+  :ensure t
+  :init
+  (doom-modeline-mode 1))
+
+;; === NYAN
+(use-package nyan-mode
+  :ensure t
+  :init
+  (nyan-mode 1))
+
+;; === SOLARIZED
+(use-package solarized-theme
+  :defer t
+  :config
+  (setq solarized-distinct-fringe-background t)
+  (setq solarized-use-variable-pitch nil)
+  (setq solarized-high-contrast-mode-line t)
+  (setq solarized-scale-markdown-headlines t))
 
 (set-frame-font
- ;; "Consolas 11")
+ ;; "Consolas 12")
  "PragmataPro Mono 12")
- ;; "Cascadia Code 11")
+;; "Iosevka Fixed 12")
+;; "Cascadia Code 11")
 
 (setq-default line-spacing 2)
 
-(load-theme 'doom-vibrant t)
+;; (load-theme 'doom-vibrant t)
 
 
 
@@ -508,7 +581,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(elfeed edit-indirect jupyter yaml-mode vimrc-mode use-package undo-tree rainbow-delimiters markdown-mode magit ivy elpy doom-themes diminish browse-kill-ring auctex))
+   '(treemacs neotree nyan-mode doom-modeline solarized-theme projectile lsp-mode flycheck elfeed edit-indirect jupyter yaml-mode vimrc-mode use-package undo-tree rainbow-delimiters markdown-mode magit ivy elpy doom-themes diminish browse-kill-ring auctex))
  '(warning-suppress-types '((auto-save))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
