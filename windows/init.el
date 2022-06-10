@@ -487,20 +487,6 @@
   (let ((shell-file-name "C:\\Program Files\\Git\\bin\\bash.exe"))
     (shell "*bash*")))
 
-;; === MY PACKAGES
-;; (add-to-list 'custom-theme-load-path "C:/Users/adria/AppData/Roaming/.emacs.d/mine/thm/monok")
-;; (add-to-list 'custom-theme-load-path "C:/Users/adria/AppData/Roaming/.emacs.d/mine/thm/old")
-;; (add-to-list 'custom-theme-load-path "C:/Users/adria/AppData/Roaming/.emacs.d/mine/thm/light")
-;; (add-to-list 'custom-theme-load-path "C:/Users/adria/AppData/Roaming/.emacs.d/mine/thm/sol")
-;; (add-to-list 'custom-theme-load-path "C:/Users/adria/AppData/Roaming/.emacs.d/mine/thm/simple")
-;; (add-to-list 'custom-theme-load-path "C:/Users/adria/AppData/Roaming/.emacs.d/mine/thm/my16")
-
-;; (let ((basedir "C:/Users/adria/AppData/Roaming/.emacs.d/mine/thm/"))
-;;   (dolist (f (directory-files basedir))
-;; 	(if (and (not (or (equal f ".") (equal f "..")))
-;; 			 (file-directory-p (concat basedir f)))
-;; 		(add-to-list 'custom-theme-load-path (concat basedir f)))))
-
 ;; === DOOM THEMES
 (use-package doom-themes
   :defer t)
