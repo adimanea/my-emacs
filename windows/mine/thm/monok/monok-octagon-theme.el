@@ -1,5 +1,5 @@
 ;; get $pwd/base-theme
-(load (concat (file-name-directory (buffer-file-name)) "monok-base-theme.el"))
+(require 'monok-theme)
 
 (defvar monok-octagon-colors
   '(:zblack "#282a3a"

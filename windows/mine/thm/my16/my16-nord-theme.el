@@ -1,5 +1,5 @@
 ;; get $pwd/base-theme
-(load (concat (file-name-directory (buffer-file-name)) "my16-base-theme.el"))
+(require 'my16-theme)
 
 (defvar my16-nord-colors
   '(:zkw "#88c0d0"

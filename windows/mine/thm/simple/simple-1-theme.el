@@ -1,5 +1,6 @@
 ;; get $pwd/base-theme
-(load (concat (file-name-directory (buffer-file-name)) "simple-base-theme.el"))
+
+(require 'simple-theme)
 
 (defvar simple-1-colors
   '(:zbg "#1c1f16"

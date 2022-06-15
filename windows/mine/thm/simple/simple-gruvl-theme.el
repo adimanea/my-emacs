@@ -1,5 +1,5 @@
 ;; get $pwd/base-theme
-(load (concat (file-name-directory (buffer-file-name)) "simple-base-theme.el"))
+(require 'simple-theme)
 
 (defvar simple-gruvl-colors
   '(:zbg "#f9f5d7"
