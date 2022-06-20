@@ -151,12 +151,12 @@ Exempt major modes are defined in `display-line-numbers-exempt-modes'."
 ;;   (define-key flymake-mode-map (kbd "M-p") 'flymake-goto-prev-error))
 
 ;; Kill current buffer and close its window
-(defun bjm/kill-this-buffer ()
-  "Kill the current buffer."
-  (interactive)
-  (kill-buffer (current-buffer))
-  (delete-window))
-(global-set-key (kbd "C-x k") 'bjm/kill-this-buffer)
+;; (defun bjm/kill-this-buffer ()
+;;   "Kill the current buffer."
+;;   (interactive)
+;;   (kill-buffer (current-buffer))
+;;   (delete-window))
+;; (global-set-key (kbd "C-x k") 'bjm/kill-this-buffer)
 
 
 
