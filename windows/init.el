@@ -165,8 +165,12 @@ Exempt major modes are defined in `display-line-numbers-exempt-modes'."
   :diminish undo-tree-mode
   :ensure t
   :if window-system
-  :init
-  (global-undo-tree-mode))
+  :config
+  (global-undo-tree-mode)
+  (setq undo-tree-auto-save-history t)
+  (setq undo-tree-history-directory-alist 
+    '(("" . "~/.emacs.d/undos")))
+  )
 
 ;; === EDIT-INDIRECT for code blocks
 (use-package edit-indirect
@@ -460,6 +464,19 @@ Exempt major modes are defined in `display-line-numbers-exempt-modes'."
   (setq markdown-enable-math t)
   (setq markdown-fontify-code-blocks-natively t))
 
+;; GLSL mode
+;; https://melpa.org/#/glsl-mode
+(use-package glsl-mode
+  :defer t
+  :config
+  (add-to-list 'auto-mode-alist '("\\.glsl\\'" . glsl-mode))
+  (add-to-list 'auto-mode-alist '("\\.vert\\'" . glsl-mode))
+  (add-to-list 'auto-mode-alist '("\\.frag\\'" . glsl-mode))
+  (add-to-list 'auto-mode-alist '("\\.geom\\'" . glsl-mode))
+  (add-to-list 'auto-mode-alist '("\\.fs\\'" . glsl-mode))
+  (add-to-list 'auto-mode-alist '("\\.vs\\'" . glsl-mode)))
+
+
 ;; EGLOT
 ;; https://github.com/joaotavora/eglot
 (use-package eglot
@@ -467,7 +484,10 @@ Exempt major modes are defined in `display-line-numbers-exempt-modes'."
   :config
   (add-to-list 'eglot-server-programs '((c++-mode c-mode) "clangd"))
   (add-hook 'c-mode-hook 'eglot-ensure)
-  (add-hook 'c++-mode-hook 'eglot-ensure))
+  (add-hook 'c++-mode-hook 'eglot-ensure)
+  ;; disable output to minibuffer (eldoc style)
+  (setq eglot-ignored-server-capabilites '(:documentHighlightProvider))
+)
 
 ;; === C++
 (setq-default c-basic-offset 4)
@@ -522,13 +542,14 @@ Exempt major modes are defined in `display-line-numbers-exempt-modes'."
   :init
   ;; set prefix for lsp-command-keymap (few alternatives - "C-l", "C-c l")
   (setq lsp-keymap-prefix "C-c l")
-  :hook (python-mode . lsp-deferred)
+  ;; :hook (python-mode . lsp-deferred)
   :commands lsp)
 
 ;; (add-hook 'c-mode-hook 'lsp)
 ;; (add-hook 'c++-mode-hook 'lsp)
 (remove-hook 'c-mode-hook 'lsp)
 (remove-hook 'c++-mode-hook 'lsp)
+(remove-hook 'python-mode 'lsp)
 
 (setq gc-cons-threshold (* 100 1024 1024)
       read-process-output-max (* 1024 1024)
@@ -540,7 +561,10 @@ Exempt major modes are defined in `display-line-numbers-exempt-modes'."
 (with-eval-after-load 'lsp-mode
   (add-hook 'lsp-mode-hook #'lsp-enable-which-key-integration)
   (require 'dap-cpptools)
-  (yas-global-mode))
+  (yas-global-mode)
+  ;; (setq lsp-enable-snippet nil)
+  ;; (setq lsp-completion-provider :capf)
+  )
 
 ;; === YAML Mode
 (use-package yaml-mode
@@ -696,7 +720,7 @@ Exempt major modes are defined in `display-line-numbers-exempt-modes'."
     (progn
 	  ;; use sumatra as PDF viewer
       (setq TeX-view-program-list
-            '(("Sumatra PDF" ("\"C:/Program Files/SumatraPDF/SumatraPDF.exe\" -reuse-instance"
+            '(("Sumatra PDF" ("\"C:/Users/adria/AppData/Local/SumatraPDF/SumatraPDF.exe\" -reuse-instance"
                               (mode-io-correlate " -forward-search %b %n ") " %o"))))
 	  ;; try to make SUPER key useful
 	  (setq w32-pass-apps-to-system nil)
@@ -790,7 +814,20 @@ Exempt major modes are defined in `display-line-numbers-exempt-modes'."
   (setq company-tooltip-flip-when-above t)
   (setq company-tooltip-margin 1)
   (setq company-format-margin-function #'company-text-icons-margin)
+  ;; (add-to-list 'company-backends company-yasnippet)
   )
+
+;; fuzzy search in company
+;; https://github.com/jcs-elpa/company-fuzzy
+;; (use-package company-fuzzy
+;;   :ensure company
+;;   :diminish company-fuzzy-mode
+;;   :hook (company-mode . company-fuzzy-mode))
+  ;;  :config
+  ;; (setq company-fuzzy-sorting-backend 'flx
+		;; company-fuzzy-prefix-on-top nil
+		;; company-fuzzy-history-backends '(company-yasnippet)
+		;; company-fuzzy-trigger-symbols '("." "->" "<" "\"" "'" "@")))
 
 ;; (with-eval-after-load 'company
 ;;   (define-key company-active-map
@@ -1149,12 +1186,12 @@ Exempt major modes are defined in `display-line-numbers-exempt-modes'."
 ;; (set-frame-font
 ;;  "Consolas 12")
 (set-face-attribute 'default nil
-					:family "Consolas"
+					:family "PragmataPro Mono"
 					:height 120
 					:weight 'normal)
 
 (set-face-attribute 'fixed-pitch nil
-					:family "Consolas")
+					:family "PragmataPro Mono")
 
 ;; :family "FixedSys Excelsior 3.01"
 ;; "PragmataPro Mono 12")
@@ -1165,7 +1202,7 @@ Exempt major modes are defined in `display-line-numbers-exempt-modes'."
 ;; "iA Writer Mono S 11")
 ;; "Anonymous Pro 12")
 
-(setq-default line-spacing 2)
+(setq-default line-spacing 3)
 
 (add-to-list 'custom-theme-load-path "~/.emacs.d/mine/thm/simple/")
 (add-to-list 'custom-theme-load-path "~/.emacs.d/mine/thm/monok/")
@@ -1186,7 +1223,7 @@ Exempt major modes are defined in `display-line-numbers-exempt-modes'."
  '(git-gutter:modified-sign "~~")
  '(git-gutter:window-width 2)
  '(package-selected-packages
-   '(flymake-json flymake-easy json-mode ag ess git-gutter yasnippet-snippets powershell dracula-theme gruvbox-theme monokai-theme color-theme-sanityinc-tomorrow ggtags rtags smartparens eglot dap-mode dap which-key cmake-mode web-mode treemacs neotree nyan-mode doom-modeline solarized-theme projectile lsp-mode flycheck elfeed edit-indirect jupyter yaml-mode vimrc-mode use-package undo-tree rainbow-delimiters markdown-mode magit ivy elpy doom-themes diminish browse-kill-ring auctex))
+   '(glsl-mode flymake-json flymake-easy json-mode ag ess git-gutter yasnippet-snippets powershell dracula-theme gruvbox-theme monokai-theme color-theme-sanityinc-tomorrow ggtags rtags smartparens eglot dap-mode dap which-key cmake-mode web-mode treemacs neotree nyan-mode doom-modeline solarized-theme projectile lsp-mode flycheck elfeed edit-indirect jupyter yaml-mode vimrc-mode use-package undo-tree rainbow-delimiters markdown-mode magit ivy elpy doom-themes diminish browse-kill-ring auctex))
  '(warning-suppress-types '((auto-save))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
