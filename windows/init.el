@@ -107,7 +107,15 @@
 (require 'display-line-numbers)
 
 (defcustom display-line-numbers-exempt-modes
-  '(vterm-mode eshell-mode shell-mode term-mode ansi-term-mode treemacs-mode)
+  '(vterm-mode
+	eshell-mode
+	shell-mode
+	term-mode
+	ansi-term-mode
+	treemacs-mode
+	elfeed-search-mode
+	elfeed-show-mode
+	)
   "Major modes on which to disable line numbers."
   :group 'display-line-numbers
   :type 'list
@@ -275,6 +283,8 @@ Exempt major modes are defined in `display-line-numbers-exempt-modes'."
 (setq-default c-basic-offset 2)
 (setq c++-tab-always-indent t)
 (setq c-indent-level 2)                  ;; Default is 2
+
+(add-to-list 'auto-mode-alist '("\\.inl\\'" . c++-mode))
 
 ;; === GGTAGS
 ;; make sure you install GNU Global first
@@ -465,8 +475,8 @@ Exempt major modes are defined in `display-line-numbers-exempt-modes'."
 
 ;; === YASNIPPET-SNIPPETS
 ;; https://github.com/AndreaCrotti/yasnippet-snippets
-;; (use-package yasnippet-snippets
-;;   :defer t)
+(use-package yasnippet-snippets
+  :defer t)
 
 ;; === ELPY (Python)
 (use-package elpy
@@ -512,18 +522,21 @@ Exempt major modes are defined in `display-line-numbers-exempt-modes'."
   (setq company-selection-wrap-around t)
   )
 
+(with-eval-after-load 'company
+  (define-key company-active-map (kbd "<return>") #'company-complete-selection))
+
 ;; Add yasnippet support for all company backends
 ;; https://github.com/syl20bnr/spacemacs/pull/179
-;; (defvar company-mode/enable-yas t
-;;   "Enable yasnippet for all backends.")
+(defvar company-mode/enable-yas t
+  "Enable yasnippet for all backends.")
 
-;; (defun company-mode/backend-with-yas (backend)
-;;   (if (or (not company-mode/enable-yas) (and (listp backend) (member 'company-yasnippet backend)))
-;;       backend
-;;     (append (if (consp backend) backend (list backend))
-;;             '(:with company-yasnippet))))
+(defun company-mode/backend-with-yas (backend)
+  (if (or (not company-mode/enable-yas) (and (listp backend) (member 'company-yasnippet backend)))
+      backend
+    (append (if (consp backend) backend (list backend))
+            '(:with company-yasnippet))))
 
-;; (setq company-backends (mapcar #'company-mode/backend-with-yas company-backends))
+(setq company-backends (mapcar #'company-mode/backend-with-yas company-backends))
 
 ;; === FLYCHECK
 ;; https://www.flycheck.org/en/latest/
@@ -589,7 +602,7 @@ Exempt major modes are defined in `display-line-numbers-exempt-modes'."
     (elfeed-search-untag-all-unread))
   (define-key elfeed-search-mode-map (kbd "A") 'elfeed-mark-all-as-read)
   (define-key elfeed-search-mode-map (kbd "R") 'elfeed-search-fetch) ;; refresh
-  (setq elfeed-search-title-max-width '100)
+  (setq elfeed-search-title-max-width '200)
   (setq elfeed-search-title-trailing-width '30)       ;; space left for tags & titles
   (setq elfeed-search-title-min-width '10)
   (setq elfeed-search-date-format '("%d %b" 6 :left)) ;; 25 Mar
@@ -751,26 +764,20 @@ Exempt major modes are defined in `display-line-numbers-exempt-modes'."
   )
 
 ;; === FONTS
-(setq-default antialias 'subpixel)
+;; use fixed width fonts everywhere
+;; shr = simple HTML renderer, defaults to variable width
+(setq-default shr-use-fonts 'nil)
 
 ;; (set-frame-font
 ;;  "Consolas 12")
-(set-face-attribute 'default nil
-					:family "Cascadia Code"
-					:height 110
-					:weight 'normal)
-
-(set-face-attribute 'fixed-pitch nil
-					:family "Cascadia Code")
-
-;; :family "FixedSys Excelsior 3.01"
-;; "PragmataPro Mono 12")
-;; "Fira Code 11")
-;; "Iosevka Fixed 12")
-;; "Cascadia Code 11")
-;; "Jetbrains Mono 11")
-;; "iA Writer Mono S 11")
-;; "Anonymous Pro 12")
+(if (eq system-type 'windows-nt)
+	(progn
+	(set-face-attribute 'default nil
+						:family "Cascadia Mono"
+						:height 110
+						:weight 'normal))
+  (set-face-attribute 'fixed-pitch nil
+					  :family "Cascadia Mono"))
 
 (setq-default line-spacing 0)
 
@@ -780,11 +787,8 @@ Exempt major modes are defined in `display-line-numbers-exempt-modes'."
 (add-to-list 'custom-theme-load-path "~/.emacs.d/mine/thm/sol/")
 (setq custom-theme-directory "~/.emacs.d/mine/thm/")
 
-(load-theme 'doom-vibrant t)
+(load-theme 'modus-vivendi t)
 
-;; use fixed width fonts everywhere
-;; shr = simple HTML renderer, defaults to variable width
-(setq-default shr-use-fonts 'nil)
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -794,7 +798,7 @@ Exempt major modes are defined in `display-line-numbers-exempt-modes'."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(elfeed eldoc-box fwb-cmds yaml-mode web-mode use-package solarized-theme rtags rainbow-delimiters projectile nyan-mode monokai-theme modus-themes markdown-mode magit json-mode ivy gruvbox-theme glsl-mode ggtags flymake-json flycheck elpy eglot edit-indirect dracula-theme doom-themes diminish color-theme-sanityinc-tomorrow cmake-mode browse-kill-ring base16-theme auctex ag)))
+   '(yasnippet-snippets elfeed eldoc-box fwb-cmds yaml-mode web-mode use-package solarized-theme rtags rainbow-delimiters projectile nyan-mode monokai-theme modus-themes markdown-mode magit json-mode ivy gruvbox-theme glsl-mode ggtags flymake-json flycheck elpy eglot edit-indirect dracula-theme doom-themes diminish color-theme-sanityinc-tomorrow cmake-mode browse-kill-ring base16-theme auctex ag)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
