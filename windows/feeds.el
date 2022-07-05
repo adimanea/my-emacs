@@ -9,17 +9,22 @@
         ("http://g4media.ro/feed" ro)
         ("http://utopiabalcanica.net/feed/" ro fun)
         ("http://republica.ro/rss" ro)
+		("https://filme-carti.ro/feed" ro culture lit books)
         ;; ("https://life.ro/feed" ro)
         ("http://pressone.ro/feed/" ro)
 		;; ("https://www.eff.org/rss/updates.xml" cs privsec)
 		;; ("https://freedom-to-tinker.com/feed/rss/" css privsec)
         ("https://thereader.mitpress.mit.edu/feed" cs books blogs)
-        ;; ("http://www.newyorker.com/feed/everything" intl)
-        ;; ("http://www.newyorker.com/feed/posts" intl)
-        ;; ("http://www.newyorker.com/feed/magazine/rss" intl)
-        ;; ("http://www.newyorker.com/feed/culture" intl culture)
-        ;; ("http://www.newyorker.com/feed/humor" intl fun)
+        ("http://www.newyorker.com/feed/everything" intl)
+        ("http://www.newyorker.com/feed/posts" intl)
+        ("http://www.newyorker.com/feed/magazine/rss" intl)
+        ("http://www.newyorker.com/feed/culture" intl culture)
+        ("http://www.newyorker.com/feed/humor" intl fun)
         ("http://www.newyorker.com/feed/books" intl books)
+		("https://www.destructoid.com/feed" games)
+		("https://www.eurogamer.net/feed" games)
+		("https://www.polygon.com/rss/index.xml" games)
+		("https://www.escapistmagazine.com/?feed=rss" games)
         ;; ("http://www.newyorker.com/feed/tech" intl tech)
         ;; ("https://www.lemonde.fr/rss/une.xml" intl)
         ;; ("https://www.lemonde.fr/culture/rss_full.xml" intl culture)
@@ -34,7 +39,10 @@
         ;; ("https://blog.veitheller.de/feed.rss" cs blogs)
         ;; ("http://www.overcomingbias.com/feed" ai cs)
         ;; ("https://openlogicproject.org/feed/" math cs)
-        ("https://www.ziarulmetropolis.ro/feed" culture books)
+		("https://3quarksdaily.com/feed" culture sci)
+		("https://aldaily.com/feed" culture lit sci)
+		("https://feedproxy.google.com/brainpickings/rss" culture lit sci books)
+        ("https://www.ziarulmetropolis.ro/feed" culture books ro)
         ("http://andreicraciun.eu/feed" blogs culture)
         ("https://granta.com/feed/" books)
         ("https://lithub.com/feed/" books)
@@ -46,7 +54,7 @@
         ("https://arxiv.org/rss/math.HO/recent" arxiv)
         ("https://arxiv.org/rss/physics.hist-ph/recent" arxiv)
         ("https://www.quantamagazine.org/feed/" sci)
-        ("http://nautil.us/rss/all" sci)
+        ("http://nautil.us/rss" sci)
         ;; ("https://haskellweekly.news/haskell-weekly.atom" math cs)
         ("http://feeds.feedburner.com/Math3ma" math)
         ("https://compositionality-journal.org/feed/" math)
@@ -87,7 +95,7 @@
         ;; ("https://www.gatesnotes.com/rss/" blogs)
         ("http://ciprianmuntele.ro/feed/" blogs ro)
         ("https://andreicraciun.eu/feed/" blogs ro)
-        ("http://www.viorelilisoi.ro/feed/" blogs ro)
+        ("https://viorelilisoi.ro/feed/" blogs ro)
         ;; ("https://eusuntv.ro/feed/" blogs ro)
         ("https://www.catavencii.ro/feed" fun ro)
         ("https://kmkz.ro/rss.xml" fun ro)
@@ -127,7 +135,7 @@
         ("https://9to5google.com/feed" cs google)
         ("https://castel.dev/rss.xml" cs math blogs)
         ("https://www.angrymetalguy.com/feed/" music blogs)
-        ("https://metal-fi.com/feed" music blogs)
+        ;; ("https://metal-fi.com/feed" music blogs)
         ("http://www.linusakesson.net/rssfeed.php" cs blogs)
 		("https://protesilaos.com/master.xml" emacs cs)
 		("https://feeds.feedblitz.com/plperspectives" cs)
@@ -323,7 +331,7 @@
         ("https://www.youtube.com/feeds/videos.xml?channel_id=UClnDI2sdehVm1zm_LmUHsjQ" yt docu)            ;; Biographics
         ("https://www.youtube.com/feeds/videos.xml?channel_id=UCOKHwx1VCdgnxwbjyb9Iu1g" yt linux)           ;; Blender Guru
         ("https://www.youtube.com/feeds/videos.xml?channel_id=UClcE-kVhqyiHCcjYwcpfj9w" yt privsec)         ;; LiveOverflow
-        ("https://www.youtube.com/feeds/videos.xml?channel_id=UCpCBa7DpNda1mNKLCb2K8zQ" yt privsec)         ;; Cybering
+        ;; ("https://www.youtube.com/feeds/videos.xml?channel_id=UCpCBa7DpNda1mNKLCb2K8zQ" yt privsec)         ;; Cybering
         ("https://www.youtube.com/feeds/videos.xml?channel_id=UC3s0BtrBJpwNDaflRSoiieQ" yt privsec)         ;; Hak5
         ("https://www.youtube.com/feeds/videos.xml?channel_id=UCbgM8ptK_1uvuDhrym8Q13g" yt travel)          ;; Peter Life
         ("https://www.youtube.com/feeds/videos.xml?channel_id=UCxDZs_ltFFvn0FDHT6kmoXA" yt travel)          ;; Bald & Bankrupt
@@ -392,7 +400,7 @@
         ("https://www.youtube.com/feeds/videos.xml?channel_id=UC5Gmg-VtFmnP8qLq8V7Pvtg" yt edu)             ;; John Fish
         ("https://www.youtube.com/feeds/videos.xml?channel_id=UCEgoThiTZG6wbTVA6B1Ksaw" yt fun)             ;; Gentleman's Gazette
         ("https://www.youtube.com/feeds/videos.xml?channel_id=UCFASHKnkjl7Xa5Nsj9mfvDA" yt culture)         ;; GSG 360
-        ("https://www.youtube.com/feeds/videos.xml?channel_id=UC2eYFnH61tmytImy1mTYvhA" yt cs)              ;; Luke Smith
+        ;; ("https://www.youtube.com/feeds/videos.xml?channel_id=UC2eYFnH61tmytImy1mTYvhA" yt cs)              ;; Luke Smith
         ("https://www.youtube.com/feeds/videos.xml?channel_id=UCVls1GmFKf6WlTraIb_IaJg" yt cs)              ;; DistroTube
         ("https://www.youtube.com/feeds/videos.xml?channel_id=UCsnGwSIHyoYN0kiINAGUKxg" yt cs)              ;; Wolfgang
         ("https://www.youtube.com/feeds/videos.xml?channel_id=UCFzGyNKXPAglNq28qWYTDFA" yt cs)              ;; Kai Hendry
