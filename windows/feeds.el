@@ -421,4 +421,33 @@
         ("https://www.youtube.com/feeds/videos.xml?channel_id=UCmOb8pxjIoRundRLIABzwIw" yt pens)            ;; Goldspot Pens
         ("https://www.youtube.com/feeds/videos.xml?channel_id=UCeWDDbfQxKv0Cgq_UNpwYpA" yt pens)            ;; SBRE Brown
         ("https://www.youtube.com/feeds/videos.xml?channel_id=UCrFPx-OgfWpaFTNdnd-xAAQ" yt pens)            ;; Dr. Fountain Pens
-        ("https://www.youtube.com/feeds/videos.xml?channel_id=UCPdFDFTd6P1a__tAr8CrpCQ" yt pens)))          ;; Goulet Pens
+        ("https://www.youtube.com/feeds/videos.xml?channel_id=UCPdFDFTd6P1a__tAr8CrpCQ" yt pens)            ;; Goulet Pens
+		("https://www.youtube.com/feeds/videos.xml?channel_id=UC-2Y8dQb0S6DtpxNgAKoJKA" yt games)			;; PlayStation
+		("https://www.youtube.com/feeds/videos.xml?channel_id=UC-obvt6Gn0Eef9vKxwcg_pg" yt music)			;; PianoPig
+		("https://www.youtube.com/feeds/videos.xml?channel_id=UC-smeLB9AnOTeypr1YyjJ3A" yt music)			;; ARTE Concert
+		("https://www.youtube.com/feeds/videos.xml?channel_id=UC0JB7TSe49lg56u6qH8y_MQ" yt games)			;; GDC
+		("https://www.youtube.com/feeds/videos.xml?channel_id=UC0KU8F9jJqSLS11LRXvFWmg"	yt games)			;; Ubisoft
+		("https://www.youtube.com/feeds/videos.xml?channel_id=UC0X9C_qqul3KN9u8TQmm6aA" yt sci)				;; UniBuc
+		("https://www.youtube.com/feeds/videos.xml?channel_id=UC0cOCSOcLSaB8Vt8xgJTHWw" yt music)			;; Softube
+		("https://www.youtube.com/feeds/videos.xml?channel_id=UC0fDG3byEcMtbOqPMymDNbw" yt games)			;; Noclip
+		("https://www.youtube.com/feeds/videos.xml?channel_id=UCrJ9Cdr93XCbU_waM0gbBqQ" yt music)			;; Cafe Anatolia
+		("https://www.youtube.com/feeds/videos.xml?channel_id=UC1bwliGvJogr7cWK0nT2Eag" yt games)			;; MK Ice and Fire
+		("https://www.youtube.com/feeds/videos.xml?channel_id=UC1gpkvbirWBKeUFFfAYtQuw" yt music)			;; Tim Shoebridge
+		("https://www.youtube.com/feeds/videos.xml?channel_id=UC2_JOhJf-VAQm5VRqjY40Rw" yt music)			;; Farya Faraji
+		("https://www.youtube.com/feeds/videos.xml?channel_id=UC7WDD6yHgzdqijHluCi1z-Q" yt games)			;; The Act Man
+		("https://www.youtube.com/feeds/videos.xml?channel_id=UC7eFS53gq-HfEt_WvdVKskw" yt music)			;; Jef Gibbons
+		("https://www.youtube.com/feeds/videos.xml?channel_id=UC91M_WEGP3Ud4HJDeD_nLIQ" yt books)			;; O mie de semne
+		("https://www.youtube.com/feeds/videos.xml?channel_id=UC9YydG57epLqxA9cTzZXSeQ" yt games)			;; Call of Duty
+		("https://www.youtube.com/feeds/videos.xml?channel_id=UC9dRb4fbJQIbQ3KHJZF_z0g" yt books phil)		;; Let's Talk Religion
+		("https://www.youtube.com/feeds/videos.xml?channel_id=UCAiiOTio8Yu69c3XnR7nQBQ" yt emacs)			;; System Crafters
+		("https://www.youtube.com/feeds/videos.xml?channel_id=UCEFW1E8QzP-hKxjO2Rj68wg" yt fun food)		;; Nat's What I Reckon
+		("https://www.youtube.com/feeds/videos.xml?channel_id=UCE_M8A5yxnLfW0KghEeajjw" yt apple cs)		;; Apple
+		("https://www.youtube.com/feeds/videos.xml?channel_id=UC8TZwtZ17WKFJSmwTZQpBTA" yt music)			;; My Analog Journal
+		("https://www.youtube.com/feeds/videos.xml?channel_id=UCd-9pZ4Vcmsjw5TsPKWrigw" yt games)			;; Hunt:Showdown
+		("https://www.youtube.com/feeds/videos.xml?channel_id=UCekQr9znsk2vWxBo3YiLq2w" yt food)			;; You Suck at Cooking
+		("https://www.youtube.com/feeds/videos.xml?channel_id=UCf-cfRJyxATGTgWGiFkFUWA" yt art)				;; Adam Duff LUCIDPIXUL
+		("https://www.youtube.com/feeds/videos.xml?channel_id=UCkz6FGQEPkmMPEfi6D89qDw" yt music)			;; Subcarpați
+		("https://www.youtube.com/feeds/videos.xml?channel_id=UCzsd4-oyHhNbAXfceOQ5HTw" yt music)			;; Venus Theory
+		("https://www.youtube.com/feeds/videos.xml?channel_id=UCzb-6smlTg5UPirLdsdQ_cQ" yt fun)				;; Foil Arms and Hog
+		))
+
