@@ -475,8 +475,8 @@ Exempt major modes are defined in `display-line-numbers-exempt-modes'."
 
 ;; === YASNIPPET-SNIPPETS
 ;; https://github.com/AndreaCrotti/yasnippet-snippets
-(use-package yasnippet-snippets
-  :defer t)
+;; (use-package yasnippet-snippets
+;;   :defer t)
 
 ;; === ELPY (Python)
 (use-package elpy
@@ -523,7 +523,7 @@ Exempt major modes are defined in `display-line-numbers-exempt-modes'."
   )
 
 (with-eval-after-load 'company
-  (define-key company-active-map (kbd "<return>") #'company-complete-selection))
+  (define-key company-active-map (kbd "C-<tab>") #'company-complete-selection))
 
 ;; Add yasnippet support for all company backends
 ;; https://github.com/syl20bnr/spacemacs/pull/179
@@ -798,7 +798,7 @@ Exempt major modes are defined in `display-line-numbers-exempt-modes'."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(yasnippet-snippets elfeed eldoc-box fwb-cmds yaml-mode web-mode use-package solarized-theme rtags rainbow-delimiters projectile nyan-mode monokai-theme modus-themes markdown-mode magit json-mode ivy gruvbox-theme glsl-mode ggtags flymake-json flycheck elpy eglot edit-indirect dracula-theme doom-themes diminish color-theme-sanityinc-tomorrow cmake-mode browse-kill-ring base16-theme auctex ag)))
+   '(elfeed eldoc-box fwb-cmds yaml-mode web-mode use-package solarized-theme rtags rainbow-delimiters projectile nyan-mode monokai-theme modus-themes markdown-mode magit json-mode ivy gruvbox-theme glsl-mode ggtags flymake-json flycheck elpy eglot edit-indirect dracula-theme doom-themes diminish color-theme-sanityinc-tomorrow cmake-mode browse-kill-ring base16-theme auctex ag)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
