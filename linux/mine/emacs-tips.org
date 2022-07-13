@@ -1,0 +1,6 @@
+#+TITLE: Emacs Tips
+#+AUTHOR: Adrian Manea
+
+* Various Configs
+- [[https://marcohassan.github.io/bits-of-experience/pages/emacs/][A Life Configuring Emacs]];
+- [[https://caiorss.github.io/Emacs-Elisp-Programming/Emacs_On_Windows.html][Emacs on Windows]];

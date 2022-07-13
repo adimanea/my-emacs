@@ -1,0 +1,16 @@
+#+TITLE: C++ Setup
+#+AUTHOR: Adrian Manea
+
+* No LSP
+- [[https://trivialfis.github.io/emacs/2017/08/02/C-C++-Development-Environment-on-Emacs.html][trivialfis]];
+- [[https://tuhdo.github.io/c-ide.html][tuhdo]];
+
+* LSP
+- [[https://fanpengkong.com/post/emacs-ccpp/emacs-ccpp/][kong]];
+
+* Various Emacs Packages
+- [[https://github.com/atilaneves/cmake-ide][cmake-ide]];
+
+* General Stuff
+- [[https://www.reddit.com/r/cpp/comments/af74l1/recommendations_for_setting_up_a_modern_c_dev/][Dev Environment @ reddit]];
+- [[https://www.youtube.com/watch?v=7SQmleA4EMo][Zamansky Video]];

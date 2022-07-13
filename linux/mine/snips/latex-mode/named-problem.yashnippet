@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: Problem - Named
+# key: npb
+# --
+\begin{problem}[${1:name}]
+  $0
+\end{problem}
