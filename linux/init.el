@@ -51,6 +51,8 @@
 		  (lambda ()
 			(abbrev-mode -1)))
 
+(diminish 'abbrev-mode)
+
 ;; ARev indicator -- auto refresh buffer when updating
 (diminish 'auto-revert-mode)
 
@@ -75,7 +77,7 @@
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
-(fringe-mode 5)					; fringe size
+(fringe-mode 10)					; fringe size
 (setq inhibit-startup-screen t)
 (global-font-lock-mode t)
 (blink-cursor-mode -1)				; don't blink cursor
@@ -134,6 +136,7 @@
     doc-view-mode
     pdf-view-mode
     dired-mode
+	eww-mode
 	)
   "Major modes on which to disable line numbers."
   :group 'display-line-numbers
@@ -219,6 +222,47 @@ Exempt major modes are defined in `display-line-numbers-exempt-modes'."
 (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
 (add-hook 'LaTeX-mode-hook #'rainbow-delimiters-mode)
 
+;; === Diff-hl
+;; https://github.com/dgutov/diff-hl
+;; See: git-gutter for alternative
+(use-package diff-hl
+  :init
+  (add-hook 'prog-mode-hook #'diff-hl-mode)
+  (add-hook 'org-mode-hook #'diff-hl-mode)
+  (add-hook 'dired-mode-hook 'diff-hl-dired-mode)
+  (add-hook 'prog-mode-hook #'diff-hl-flydiff-mode)
+  (add-hook 'org-mode-hook #'diff-hl-flydiff-mode)
+  (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh)
+  :config
+  (setq diff-hl-fringe-bmp-function 'diff-hl-fringe-bmp-from-type)
+  (setq diff-hl-margin-side 'left)
+  (diff-hl-mode t))
+ ;; :ensure t
+ ;;  ;; for some reason the :hook form doesn't work so we have to use :init
+ ;;  :init
+ ;;  (add-hook 'magit-pre-refresh-hook 'diff-hl-magit-pre-refresh)
+ ;;  (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh)
+ ;;  (add-hook 'dired-mode-hook 'diff-hl-dired-mode)
+ ;;  :config
+ ;;  (global-diff-hl-mode t)
+ ;;  )
+
+;; (add-hook 'find-file-hook
+;; 		  (lambda ()
+;; 			(if (vc-backend buffer-file-name) (turn-on-diff-hl-mode))))
+;; (add-hook 'prog-mode-hook
+;; 		  (lambda ()
+;; 			(turn-on-diff-hl-mode)))
+
+;; === GIT-GUTTER
+;; https://github.com/emacsorphanage/git-gutter
+;; (use-package git-gutter
+;;   :hook (prog-mode . git-gutter-mode)
+;;   :config
+;;   (setq git-gutter:update-interval 0.02)
+;;   )
+;; (use-package git-gutter-fringe)
+
 ;; === MAGIT
 ;; https://github.com/magit/magit
 (use-package magit
@@ -249,6 +293,18 @@ Exempt major modes are defined in `display-line-numbers-exempt-modes'."
 		  ("L>U" 5 magit-repolist-column-unpushed-to-upstream ((:right-align t)))
 		  ("Path" 99 magit-repolist-column-path ())))
   )
+
+;; === TREESITTER = better syntax parsing
+(use-package tree-sitter
+  :ensure tree-sitter-langs
+  :config
+  (set-face-attribute 'tree-sitter-hl-face:property nil
+					  :slant 'normal)
+  )
+
+;; (require 'tree-sitter)
+;; (require 'tree-sitter-langs)
+;; then run tree-sitter-langs-install-grammars
 
 ;; === MARKDOWN
 ;; https://jblevins.org/projects/markdown-mode/
@@ -577,9 +633,11 @@ Exempt major modes are defined in `display-line-numbers-exempt-modes'."
   :defer t)
 (use-package projectile
   :defer t
+  :diminish projectile-mode
   :config
-  (setq projectile-keymap-prefix (kbd "C-c p"))
+  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
   (setq projectile-track-known-projects-automatically nil)
+  (add-hook 'eglot-managed-mode-hook 'projectile-mode)
   )
 
 ;; === COMPANY COMPLETE
@@ -684,7 +742,7 @@ Exempt major modes are defined in `display-line-numbers-exempt-modes'."
     (interactive)
     (let ((entry (if (eq major-mode 'elfeed-show-mode) elfeed-show-entry (elfeed-search-selected :single)))
           (quality-arg "")
-          (quality-val (completing-read "Max height resolution (0 for unlimited): " '("0" "480" "720") nil nil)))
+          (quality-val (completing-read "Max height resolution (0 for unlimited): " '("0" "480" "720" "1080") nil nil)))
       (setq quality-val (string-to-number quality-val))
       (message "Opening %s with height≤%s with mpv..." (elfeed-entry-link entry) quality-val)
       (when (< 0 quality-val)
@@ -792,11 +850,12 @@ Exempt major modes are defined in `display-line-numbers-exempt-modes'."
       (buf-move-left)
     (buf-move-right)))
 
-;; === RUN BASH
-(defun run-bash ()
-  (interactive)
-  (let ((shell-file-name "C:\\Program Files\\Git\\bin\\bash.exe"))
-    (shell "*bash*")))
+;; === RUN BASH IN WINDOWS
+(if (eq system-name 'windows-nt)
+    (defun run-bash ()
+      (interactive)
+      (let ((shell-file-name "C:\\Program Files\\Git\\bin\\bash.exe"))
+        (shell "*bash*"))))
 
 
 ;; === NYAN
@@ -831,7 +890,9 @@ Exempt major modes are defined in `display-line-numbers-exempt-modes'."
   :defer t
   :config
   (setq doom-themes-enable-bold t
-		doom-themes-enable-italic nil)
+		doom-themes-enable-italic nil
+		doom-vibrant-brighter-modeline t
+		)
   ;; (load-theme 'doom-vibrant t)
   ;; Enable flashing mode-line on errors
   ;; (doom-themes-visual-bell-config)
@@ -897,13 +958,20 @@ Exempt major modes are defined in `display-line-numbers-exempt-modes'."
 
 ;; === LINUX
 (set-face-attribute 'default nil
-                     :family "Fira Code"
+                     :family "Iosevka Term SS03"
                      :height 110
                      :weight 'normal
 					 )
 (set-face-attribute 'fixed-pitch nil
-                    :family "Fira Code"
+                    :family "Iosevka Term SS03"
 					)
+(set-face-attribute 'fixed-pitch-serif nil
+					:family "Iosevka Term SS03"
+					)
+
+(set-face-attribute 'variable-pitch nil
+					:family "Roboto")
+
 (set-face-attribute 'italic nil
                     :inherit 'default
                     :slant 'normal)
@@ -916,7 +984,7 @@ Exempt major modes are defined in `display-line-numbers-exempt-modes'."
 (add-to-list 'custom-theme-load-path "~/.emacs.d/mine/thm/sol/")
 (setq custom-theme-directory "~/.emacs.d/mine/thm/")
 
-(load-theme 'modus-vivendi t)
+(load-theme 'doom-vibrant t)
 
 
 
@@ -930,7 +998,7 @@ Exempt major modes are defined in `display-line-numbers-exempt-modes'."
  ;; If there is more than one, they won't work right.
  '(delete-selection-mode nil)
  '(package-selected-packages
-   '(exec-path-from-shell yaml-mode web-mode use-package solarized-theme rainbow-delimiters projectile pdf-tools nyan-mode monokai-theme modus-themes markdown-mode magit json-mode ivy image+ gruvbox-theme glsl-mode ggtags fwb-cmds flymake-json flycheck elpy elfeed eldoc-box eglot edit-indirect dracula-theme doom-themes diminish color-theme-sanityinc-tomorrow cmake-mode browse-kill-ring base16-theme auctex ag)))
+   '(abbrev abbrev-mode git-gutter-fringe git-gutter diff-hl tree-sitter-langs exec-path-from-shell yaml-mode web-mode use-package solarized-theme rainbow-delimiters projectile pdf-tools nyan-mode monokai-theme modus-themes markdown-mode magit json-mode ivy image+ gruvbox-theme glsl-mode ggtags fwb-cmds flymake-json flycheck elpy elfeed eldoc-box eglot edit-indirect dracula-theme doom-themes diminish color-theme-sanityinc-tomorrow cmake-mode browse-kill-ring base16-theme auctex ag)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
